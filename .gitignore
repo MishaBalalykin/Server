@@ -1,0 +1,9 @@
+/.idea
+**/*.iml
+**/*target/
+
+**/${*
+/.apt_generated/
+/.project
+/.classpath
+/.factorypath

@@ -10,19 +10,19 @@ import org.springframework.web.context.support.AnnotationConfigWebApplicationCon
 import org.springframework.web.servlet.DispatcherServlet;
 
 /**
- * Created by mr.balalykin on 05.10.2018.
+ * onStartup выполняется перед или в момент разворачивания сервлет контекста
  */
 public class ApplicationInitializer implements WebApplicationInitializer {
     private final static String DISPATCHER = "dispatcher";
 
     public void onStartup(ServletContext servletContext) throws ServletException {
-        AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
+        AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext(); // Создаем контекст
 
         context.register(WebConfig.class);
         servletContext.addListener((new ContextLoaderListener(context)));
 
         ServletRegistration.Dynamic servlet = servletContext.addServlet(DISPATCHER, new DispatcherServlet(context));
-        servlet.addMapping("/");
-        servlet.setLoadOnStartup(1);
+        servlet.addMapping("/"); // то что полсе localhost:8080, то же должно быть и в конфиге томката
+        servlet.setLoadOnStartup(1); // порядок инициализации, нужно если несколько сервлетов
     }
 }

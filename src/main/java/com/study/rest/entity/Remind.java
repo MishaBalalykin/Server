@@ -3,6 +3,7 @@ package com.study.rest.entity;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import javax.persistence.Temporal;
 import java.util.Date;
 
 @Entity
@@ -15,9 +16,10 @@ public class Remind {
     private long id;
 
     @Column(name = "title", nullable = false, length = 50)
-    private String Title;
+    private String title;
 
-    @Column(name = "remind_date", nullable = false)
+    @Column(name = "remind_date", nullable = true)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date remindDate;
 
     public long getId() {
@@ -29,11 +31,11 @@ public class Remind {
     }
 
     public String getTitle() {
-        return Title;
+        return title;
     }
 
     public void setTitle(String title) {
-        Title = title;
+        this.title = title;
     }
 
     public Date getRemindDate() {
